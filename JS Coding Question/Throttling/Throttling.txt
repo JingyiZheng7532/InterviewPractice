@@ -1,0 +1,4 @@
+1. What is Throttling?
+
+It is a technique to ensure a function is called at most once in a specified time period.
+It guarantees regular execution.

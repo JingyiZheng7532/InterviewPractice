@@ -1,0 +1,35 @@
+1. What is Debouncing?
+
+It is a technique to limit the rate at which a function gets invoked.
+It ensures that a function only runs after a certain amount of silence.
+
+// my consideration:
+A technique: in a period, a function might be invoked mutiple times, but we want to 
+save the resources to some degree, so we make it keep in slience until the last invoking.
+After last invoking and the last timer, we will finally execute that function.
+
+
+2. Common Use case?
+
+ => Search input
+ => Window resizing
+ => Form Validation 表单实时校验
+
+ 3. core concept: clearTimeout
+
+ 4. Implementation:
+   1） 为什么一定要用高阶函数？
+    如果不用高阶函数（把 timer 放在全局）：多个防抖组件（比如页面上有两个搜索框）会共用同一个 timer，导致互相干扰。
+
+    如果把 timer 放在函数内部：每次触发事件，函数都会重新执行，timer 会被重新初始化为 null，它根本记不住上一次的定时器，防抖就失效了。
+
+   2）为什么要保证 this 指向不变？
+    在 JavaScript 中，this 的指向是动态的，取决于谁调用了它。
+
+    正常监听时：如果你不写防抖，直接 window.addEventListener('scroll', myHandler)，当滚动发生时，浏览器调用 myHandler，
+            此时内部的 this 通常指向 window（或者在某些事件里指向触发事件的 DOM 元素）。
+    加入防抖后：你的 fn 是在 setTimeout 的回调函数里被调用的。在非严格模式下，setTimeout 里的 this 默认指向 window。
+
+    如果不使用 apply(this, args)：
+    如果 fn 本来是一个对象的方法（比如 user.saveData()），它内部可能写了 this.name。当你用防抖包装它后，如果没有 apply 绑定，
+    执行时 this 变成了 window，window.name 可能是空的，程序就会崩溃或逻辑错误。
