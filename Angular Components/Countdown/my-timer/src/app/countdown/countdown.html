@@ -1,0 +1,9 @@
+<div class="count-container">
+  <h2>Time Remaining: {{ (count$ | async) ?? startValue }}s</h2>
+  <div>
+    <button (click)="toggle()">
+      {{ (isRunning$ | async) ? 'Pause' : 'Start' }}
+    </button>
+    <button (click)="stop()">Reset (Stop)</button>
+  </div>
+</div>
