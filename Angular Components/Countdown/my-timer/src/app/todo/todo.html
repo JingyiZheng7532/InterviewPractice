@@ -1,0 +1,26 @@
+<div class="todo-container">
+  <div>
+    <h2>My To-do List</h2>
+    <input [(ngModel)]="newTodo" type="text" placeholder="Enter a new thing" />
+    <button (click)="addTodo()">Add</button>
+  </div>
+
+  <div>
+    <ng-container *ngIf="todoList.length > 0; else noTasks">
+      <ul>
+        <ng-container *ngFor="let todo of todoList; let i = index">
+          <li>
+            <div class="list-item">
+              <span>{{ todo }}</span>
+              <button (click)="deleteTodo(i)">Delete</button>
+            </div>
+          </li>
+        </ng-container>
+      </ul>
+    </ng-container>
+
+    <ng-template #noTasks>
+      <p>No tasks yet! Enjoy your day!</p>
+    </ng-template>
+  </div>
+</div>

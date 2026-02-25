@@ -1,0 +1,32 @@
+.todo-container {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid brown;
+  margin: 16px;
+  padding: 8px;
+}
+
+div > h2 {
+  text-align: center;
+}
+
+button {
+  margin: 8px;
+  width: 80px;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  border-bottom: 1px dotted #ccc;
+}
+
+ul {
+  padding: 20px;
+  margin: 0px;
+}
