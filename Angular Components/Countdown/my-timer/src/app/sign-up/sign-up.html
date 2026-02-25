@@ -1,0 +1,28 @@
+<div class="form-container">
+  <h2>Create Account</h2>
+  <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-field">
+      <label>Username</label>
+      <input formControlName="username" placeholder="At least 3 characters" />
+      <small *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+        Username is required! (Min 3 chars)
+      </small>
+    </div>
+
+    <div class="form-field">
+      <label>Email</label>
+      <input formControlName="email" type="email" />
+      <small *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+        Please enter a valid email!
+      </small>
+    </div>
+    <div class="form-field">
+      <label>Password</label>
+      <input formControlName="password" type="password" />
+      <small *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+        >Password is required! (Min 6 chars)</small
+      >
+    </div>
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+  </form>
+</div>
